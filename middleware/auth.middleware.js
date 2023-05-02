@@ -1,10 +1,10 @@
 var jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
-  const token = req.headers.authorization.split(" ")[1];
+  const token = req.headers.authorization;
   if (token) {
     try {
-      let decoded = jwt.verify(token, "eval");
+      let decoded = jwt.verify(token.split(" ")[1], "eval");
   
       if (decoded) {
         (req.body.authorId = decoded.authorID),
